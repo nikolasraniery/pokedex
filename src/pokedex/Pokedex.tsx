@@ -28,15 +28,13 @@ interface PokedexProps {
 export const Pokedex: React.FC<PokedexProps> = () => {
     const [pokemons, setPokemons] = useState<PokemonListInterface[]>([]);
     const [selectedPokemon, setSelectedPokemon] = useState<PokemonListInterface | undefined>(undefined);
-    const history = useHistory();
+    
 
     useEffect(() => {
         listPokemons().then((response) => setPokemons(response.results))
     }, []);
 
-    function handleClick(pokemon: PokemonListInterface) {
-        history.push(`/pokemon/${pokemon.name}`);
-    }
+    
 
     return (
         <div>
@@ -57,7 +55,7 @@ export const Pokedex: React.FC<PokedexProps> = () => {
                     {pokemons.map((pokemon) => (
                         <>
                          <Grid item xs={6}>
-                         <PokedexCard />
+                         <PokedexCard pokemon={pokemon}/>
                         </Grid>
                         </>
                     ))}
