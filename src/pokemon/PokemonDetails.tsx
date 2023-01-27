@@ -9,6 +9,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Container from '@material-ui/core/Container';
 import { Box, Grid } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
+import lightGreen from '@material-ui/core/colors/lightGreen';
+import { display } from '@mui/system';
 
 interface PokemonDetailsProps {
     
@@ -31,7 +33,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
     }, [name]);
 
     return (
-        <div>
+        <div style={{backgroundColor:'lightGreen'}}>
             
 
             <AppBar position="static">
@@ -46,13 +48,58 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
             </AppBar>
 
             <Container style={{marginTop:'20px'}} maxWidth="lg">
-            Pokemon Selecionado: {name}
-                    
-                    <img src={selectedPokemonDetails?.sprites.front_default} alt="" />
+           
+                    <Box>
+                      <img width='100%' height='auto' src={selectedPokemonDetails?.sprites.front_default} alt="" />
+                    </Box>
+                    <Box>
+                      <Typography variant='h2' style={{marginBottom: "10px"}}>
+                        {selectedPokemonDetails?.name}
+                      </Typography >
+                        {selectedPokemonDetails?.types.map((type) => <Typography>{type.type.name}</Typography>)}
+                    </Box>
 
-                     {/* { <h2>Pokemon Selecionado: {selectedPokemon?.name || "Nenhum Pokemon Selecionado"}</h2> } */}
-                    {JSON.stringify(selectedPokemonDetails?.sprites.front_default, undefined, 2)}
-            
+                    <Box  style={{display: 'flex'}}>
+
+                    <Typography style={{marginRight: "5px"}}>
+                      Espécie:
+                    </Typography>
+                    <Typography>
+                      {selectedPokemonDetails?.species.name}
+                    </Typography>
+
+                    </Box>
+                      
+
+                    
+                    <Box style={{display: 'flex'}}>
+                    <Typography style={{marginRight: "5px"}}>
+                      Altura:
+                    </Typography>
+                    <Typography>
+                    {selectedPokemonDetails?.height}
+                    </Typography>
+                    </Box>
+
+                    <Box style={{display: 'flex'}}>
+                      <Typography style={{marginRight: "5px"}}>
+                        Peso:
+                      </Typography>
+                      <Typography>
+                        {selectedPokemonDetails?.weight}
+                      </Typography>
+                    </Box>
+                    
+                    <Box style={{display: 'flex'}}>
+                      <Typography style={{marginRight: "5px"}}>
+                        Habilidades:
+                      </Typography>
+                      <Typography>
+                        {selectedPokemonDetails?.abilities.map((ability) => <Typography /*style={{marginRight: "5px"}}*/>{ability.ability.name}</Typography>)}
+                      </Typography>
+                    </Box>
+                    
+                    
             </Container>
         </div>
     );
