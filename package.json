@@ -20,6 +20,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-history": "^0.18.2",
+    "react-query": "^3.39.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
